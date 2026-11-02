@@ -1,0 +1,11 @@
+pandas>=2.0
+numpy
+openpyxl
+matplotlib
+seaborn
+plotly
+scikit-learn>=1.3
+yellowbrick
+joblib
+streamlit>=1.46
+jupyter

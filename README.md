@@ -45,7 +45,14 @@ Customer Personality Analysis is a detailed analysis of a company's ideal custom
 
 ## Results
 
-_Update with final numbers once modeling is complete._
+K-Means, k = 4, on 3 PCA components (silhouette 0.315, Davies–Bouldin 1.148). 2,236 customers after cleaning.
+
+| Segment | Customers | Avg income | Avg 2-year spend |
+|---|---|---|---|
+| Premium | 534 | 76,376 | 1,397 |
+| Steady families | 564 | 59,998 | 840 |
+| Budget parents | 557 | 43,397 | 140 |
+| Young low spenders | 581 | 29,898 | 100 |
 
 | Segment | Profile | Marketing approach |
 |---|---|---|
@@ -67,12 +74,14 @@ customer-segmentation/
 │   ├── 04_modeling_kmeans.ipynb
 │   └── 05_model_comparison_profiling.ipynb
 ├── src/
-│   └── preprocess.py        # shared cleaning + feature code (used by notebooks and app)
+│   ├── preprocess.py        # shared cleaning + feature code (used by notebooks and app)
+│   └── train.py             # trains the final model and saves app/model.pkl
 ├── app/
 │   ├── app.py               # Streamlit app
 │   └── model.pkl            # saved scaler + PCA + K-Means
+├── docs/                    # project brief and dataset details
 ├── reports/
-│   ├── figures/
+│   ├── figures/             # charts saved by the notebooks
 │   └── final_presentation.pptx
 ├── requirements.txt
 └── README.md
@@ -93,33 +102,23 @@ customer-segmentation/
 ## Getting started
 
 ```bash
-git clone https://github.com/<owner>/customer-segmentation.git
+git clone https://github.com/SivarishiB/customer-segmentation.git
 cd customer-segmentation
 python -m venv venv
 source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Run the notebooks in order (`notebooks/01_…` to `05_…`), then start the app:
+Train the model (creates `app/model.pkl`) and start the app, from the repo root:
 
 ```bash
+python src/train.py
 streamlit run app/app.py
 ```
 
-### requirements.txt
+To explore the analysis, open Jupyter (`jupyter notebook`) and run the notebooks in `notebooks/` in order, `01` to `05`.
 
-```
-pandas
-numpy
-openpyxl
-matplotlib
-seaborn
-plotly
-scikit-learn
-yellowbrick
-joblib
-streamlit
-```
+All dependencies are listed in `requirements.txt`.
 
 ## Team
 
